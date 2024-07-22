@@ -10,7 +10,7 @@
         body {
             background: url('background.jpg') no-repeat center center fixed;
             background-size: cover;
-            font-family: Arial, sans-serif;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -20,7 +20,7 @@
             color: #fff;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
             text-align: center;
-            padding: 0 20px; /* Padding on left and right sides */
+            padding: 0 20px;
             box-sizing: border-box;
         }
         h1 {
@@ -28,18 +28,25 @@
             margin-bottom: 20px;
         }
         .container {
-            max-width: 800px; /* Adjust as needed */
+            width: 100%;
+            max-width: 800px;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 10px;
         }
         .typewriter p {
-            display: inline-block;
+            display: block;
             font-size: 1.2em;
-            white-space: nowrap;
+            white-space: pre-wrap;
             overflow: hidden;
-            animation: typing 4s steps(40, end);
+            border-right: .15em solid #ff69b4;
+            animation: blink-caret .75s step-end infinite;
+            margin: 0;
+            visibility: hidden;
         }
-        @keyframes typing {
-            from { width: 0; }
-            to { width: 100%; }
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: #ff69b4; }
         }
         @media (max-width: 600px) {
             .typewriter p {
@@ -74,18 +81,21 @@
 
         let lineIndex = 0;
         let charIndex = 0;
+        const typingSpeed = 50;
+        const lineDelay = 1000;
 
         function typeWriter() {
             if (lineIndex < lines.length) {
                 if (charIndex < lines[lineIndex].length) {
                     const currentLine = document.getElementById("line-" + lineIndex) || createNewLine(lineIndex);
+                    currentLine.style.visibility = 'visible'; // Make the line visible when typing starts
                     currentLine.innerHTML += lines[lineIndex].charAt(charIndex);
                     charIndex++;
-                    setTimeout(typeWriter, 50);
+                    setTimeout(typeWriter, typingSpeed);
                 } else {
                     charIndex = 0;
                     lineIndex++;
-                    setTimeout(typeWriter, 500); // Delay before typing the next line
+                    setTimeout(typeWriter, lineDelay); // Delay before typing the next line
                 }
             }
         }
@@ -104,7 +114,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-
 
 
 
