@@ -6,6 +6,7 @@
     <title>Happy Birthday, Romi!</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
     <style>
         body {
             background: url('background.jpg') no-repeat center center fixed;
@@ -22,6 +23,7 @@
             text-align: center;
             padding: 0 20px;
             box-sizing: border-box;
+            overflow: hidden;
         }
         h1 {
             color: #ff69b4;
@@ -33,6 +35,7 @@
             background: rgba(0, 0, 0, 0.5);
             padding: 20px;
             border-radius: 10px;
+            position: relative;
         }
         .typewriter p {
             display: block;
@@ -48,6 +51,32 @@
             from, to { border-color: transparent; }
             50% { border-color: #ff69b4; }
         }
+        .icons {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+        .icons i {
+            color: #ff69b4;
+            margin: 0 5px;
+            font-size: 1.5em;
+        }
+        .floating-hearts {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+        }
+        .floating-heart {
+            position: absolute;
+            animation: float 8s infinite;
+            opacity: 0;
+        }
+        @keyframes float {
+            0% { transform: translateY(100vh); opacity: 1; }
+            100% { transform: translateY(-10vh); opacity: 0; }
+        }
         @media (max-width: 600px) {
             .typewriter p {
                 font-size: 1em;
@@ -62,9 +91,15 @@
 </head>
 <body>
     <div class="container">
+        <div class="icons">
+            <i class="fas fa-heart"></i>
+            <i class="fas fa-birthday-cake"></i>
+            <i class="fas fa-2">2</i><i class="fas fa-3">3</i>
+        </div>
         <h1>Happy Birthday, Romi!</h1>
         <div class="typewriter" id="typewriter-container"></div>
     </div>
+    <div class="floating-hearts" id="floating-hearts"></div>
 
     <script>
         const lines = [
@@ -109,11 +144,26 @@
         }
 
         window.onload = typeWriter;
+
+        // Create floating hearts
+        const floatingHearts = document.getElementById('floating-hearts');
+        for (let i = 0; i < 20; i++) {
+            const heart = document.createElement('div');
+            heart.classList.add('floating-heart');
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 3 + 5 + 's';
+            heart.style.animationDelay = Math.random() * 5 + 's';
+            heart.innerHTML = '<i class="fas fa-heart"></i>';
+            floatingHearts.appendChild(heart);
+        }
     </script>
     <!-- Bootstrap JS (optional) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Font Awesome (for icons) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"></script>
 </body>
 </html>
+
 
 
 
