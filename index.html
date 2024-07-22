@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday, Romi!</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: url('background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            padding: 0 20px; /* Padding on left and right sides */
+            box-sizing: border-box;
+        }
+        h1 {
+            color: #ff69b4;
+            margin-bottom: 20px;
+        }
+        .container {
+            max-width: 800px; /* Adjust as needed */
+        }
+        .typewriter p {
+            display: inline-block;
+            font-size: 1.2em;
+            white-space: nowrap;
+            overflow: hidden;
+            animation: typing 4s steps(40, end);
+        }
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        @media (max-width: 600px) {
+            .typewriter p {
+                font-size: 1em;
+            }
+        }
+        @media (max-width: 400px) {
+            .typewriter p {
+                font-size: 0.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Happy Birthday, Romi!</h1>
+        <div class="typewriter" id="typewriter-container"></div>
+    </div>
+
+    <script>
+        const lines = [
+            "You're the love of my life. I'm so sorry that I can't be with you on your special day - it pains me to be away from you.",
+            "I miss you so much, even when we're apart. You're my everything, my precious, my beautiful. I love you more and more each day.",
+            "I still remember the evening we first met on June 22nd, and our first date on June 25th - a day that's special for me because it's also my birthday!",
+            "I'll never forget how we spent time together for those few days, making memories that I treasure.",
+            "And who could forget that magical midnight in the rain? It was like the universe was celebrating our love.",
+            "This year, I'm especially sorry that I can't join you on your birthday, but please know that you're always with me in spirit.",
+            "I wish I could be there to celebrate with you, but for now, know that you're always in my heart.",
+            "I can't wait for the day we can be together again, reliving those moments and creating new ones.",
+            "You mean the world to me, Romi. I love you!"
+        ];
+
+        let lineIndex = 0;
+        let charIndex = 0;
+
+        function typeWriter() {
+            if (lineIndex < lines.length) {
+                if (charIndex < lines[lineIndex].length) {
+                    const currentLine = document.getElementById("line-" + lineIndex) || createNewLine(lineIndex);
+                    currentLine.innerHTML += lines[lineIndex].charAt(charIndex);
+                    charIndex++;
+                    setTimeout(typeWriter, 50);
+                } else {
+                    charIndex = 0;
+                    lineIndex++;
+                    setTimeout(typeWriter, 500); // Delay before typing the next line
+                }
+            }
+        }
+
+        function createNewLine(index) {
+            const line = document.createElement("p");
+            line.id = "line-" + index;
+            line.classList.add("typewriter-line");
+            document.getElementById("typewriter-container").appendChild(line);
+            return line;
+        }
+
+        window.onload = typeWriter;
+    </script>
+    <!-- Bootstrap JS (optional) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+
+
+
+
+
